@@ -1048,6 +1048,7 @@
     .marquee-item { font-size: clamp(1rem, min(1.5vw, 1.6rem), 1.6rem); gap: 32px; }
     section { padding: 60px 20px !important; width: 100%; overflow-x: hidden; }
     #portfolio { padding: 60px 20px !important; }
+    #portfolio-ia { padding: 60px 20px !important; }
     .section-label { font-size: 1rem; margin-bottom: 24px; }
     .section-title { font-size: clamp(2rem, 8vw, 3rem) !important; margin-bottom: 32px; }
     #about::before { display: none; }
@@ -1154,7 +1155,7 @@
   }
 
 /* Sections BLANCHES */
-#about, #portfolio, #experience, #contact {
+#about, #portfolio, #portfolio-ia, #experience, #contact {
   background: var(--white) !important;
   color: var(--black) !important;
 }
@@ -1165,17 +1166,19 @@
 
 #about h2, #about h3, #about p, #about .section-label,
 #portfolio h2, #portfolio h3, #portfolio p, #portfolio .section-label,
+#portfolio-ia h2, #portfolio-ia h3, #portfolio-ia p, #portfolio-ia .section-label,
 #experience h2, #experience h3, #experience p, #experience .section-label,
 #contact h2, #contact h3, #contact p, #contact label, #contact .section-label {
   color: var(--black) !important;
 }
 
-#about .line, #portfolio .line, #experience .line, #contact .line {
+#about .line, #portfolio .line, #portfolio-ia .line, #experience .line, #contact .line {
   color: var(--gold) !important;
 }
 
 #about .stat-box, #about .stat-item,
 #portfolio .video-item, #portfolio .video-grid-item,
+#portfolio-ia .video-item, #portfolio-ia .video-grid-item,
 #experience .exp-item, #experience .exp-card {
   background: rgba(0, 0, 0, 0.04) !important;
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
@@ -1693,10 +1696,39 @@ p { text-wrap: pretty; hyphens: none; }
       <a href="https://www.youtube.com/watch?v=TsnImpUEAEo" target="_blank" style="position: absolute; inset: 0;"></a>
     </div>
 
-  <div style="text-align: center; margin-top: 60px;">
+  <div style="text-align: center; margin-top: 60px; grid-column: 1 / -1;">
     <button id="portfolioShowMore" class="cta-button reveal" style="display: inline-block; padding: 18px 40px; background: var(--gold); border: 1px solid var(--gold); color: var(--black); letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; border-radius: 2px; cursor: pointer; font-family: inherit;" onmouseover="this.style.background='transparent'; this.style.color='var(--gold)'" onmouseout="this.style.background='var(--gold)'; this.style.color='var(--black)'">
       Voir plus de projets
     </button>
+  </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO IA -->
+<section id="portfolio-ia" style="background: var(--black2); padding: clamp(80px, min(10vw, 160px), 160px) clamp(30px, min(4vw, 70px), 70px);">
+  <div class="section-label reveal" style="text-align: center;">Intelligence Artificielle</div>
+  <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto 80px;">Mes créations<br><em>IA</em></h2>
+  
+  <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, min(2.5vw, 40px), 40px); margin: 0 auto;">
+    <div class="portfolio-item reveal-delay-0" style="position: relative; aspect-ratio: 16/9; background: var(--black); border-radius: 4px; overflow: hidden; cursor: pointer;">
+      <img src="https://img.youtube.com/vi/BZPdB_p7gRY/maxresdefault.jpg" alt="Création IA 1" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://img.youtube.com/vi/BZPdB_p7gRY/hqdefault.jpg'">
+      <a href="https://www.youtube.com/watch?v=BZPdB_p7gRY" target="_blank" style="position: absolute; inset: 0;"></a>
+    </div>
+
+    <div class="portfolio-item reveal-delay-1" style="position: relative; aspect-ratio: 16/9; background: var(--black); border-radius: 4px; overflow: hidden; cursor: pointer;">
+      <img src="https://img.youtube.com/vi/J2QYzC5bNOQ/maxresdefault.jpg" alt="Création IA 2" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://img.youtube.com/vi/J2QYzC5bNOQ/hqdefault.jpg'">
+      <a href="https://www.youtube.com/watch?v=J2QYzC5bNOQ" target="_blank" style="position: absolute; inset: 0;"></a>
+    </div>
+
+    <div class="portfolio-item reveal-delay-2" style="position: relative; aspect-ratio: 16/9; background: var(--black); border-radius: 4px; overflow: hidden; cursor: pointer;">
+      <img src="https://img.youtube.com/vi/xjXpA_Mvatw/maxresdefault.jpg" alt="Création IA 3" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://img.youtube.com/vi/xjXpA_Mvatw/hqdefault.jpg'">
+      <a href="https://www.youtube.com/watch?v=xjXpA_Mvatw" target="_blank" style="position: absolute; inset: 0;"></a>
+    </div>
+
+    <div class="portfolio-item reveal-delay-0" style="position: relative; aspect-ratio: 16/9; background: var(--black); border-radius: 4px; overflow: hidden; cursor: pointer;">
+      <img src="https://img.youtube.com/vi/ty5FKWPDTcM/maxresdefault.jpg" alt="Création IA 4" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://img.youtube.com/vi/ty5FKWPDTcM/hqdefault.jpg'">
+      <a href="https://www.youtube.com/watch?v=ty5FKWPDTcM" target="_blank" style="position: absolute; inset: 0;"></a>
+    </div>
   </div>
 </section>
 
