@@ -119,7 +119,7 @@
     text-transform: uppercase;
     color: var(--white);
   }
-  .nav-links { display: flex; gap: clamp(30px, min(4vw, 70px), 70px); list-style: none; }
+  .nav-links { display: flex; align-items: center; gap: clamp(24px, min(3.2vw, 60px), 60px); list-style: none; }
   .nav-links a {
     font-size: clamp(0.95rem, min(1.3vw, 1.4rem), 1.4rem);
     letter-spacing: 0.2em;
@@ -141,6 +141,34 @@
   }
   .nav-links a:hover { color: var(--white); }
   .nav-links a:hover::after { width: 100%; }
+
+  /* ─── LANGUAGE SWITCHER ──────────────────── */
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 8px;
+    padding-left: 16px;
+    border-left: 1px solid oklch(0.94 0.008 80 / 0.15);
+  }
+  .lang-btn {
+    background: none;
+    border: none;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    cursor: none;
+    transition: color 0.3s;
+    padding: 4px;
+  }
+  .lang-btn:hover { color: var(--white); }
+  .lang-btn.active { color: var(--gold); }
+  .lang-sep {
+    color: oklch(0.94 0.008 80 / 0.2);
+    font-size: 0.8rem;
+  }
 
   /* Menu hamburger (caché sur desktop) */
   .menu-toggle {
@@ -209,6 +237,22 @@
     color: var(--gold);
     padding-left: 8px;
   }
+  .mobile-lang-switch {
+    display: flex;
+    gap: 16px;
+    padding: 24px 32px;
+  }
+  .mobile-lang-switch .lang-btn {
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid oklch(0.94 0.008 80 / 0.15);
+    border-radius: 4px;
+  }
+  .mobile-lang-switch .lang-btn.active {
+    border-color: var(--gold);
+    background: oklch(0.72 0.19 45 / 0.1);
+  }
 
   /* Menu overlay */
   .menu-overlay {
@@ -236,7 +280,6 @@
     gap: 40px;
     padding: 0 40px;
     overflow: hidden;
-
     margin: 0 auto;
   }
   .hero-bg {
@@ -372,8 +415,6 @@
   .hero-cta:hover { color: var(--gold); }
   .hero-cta:hover svg { transform: translateX(6px); }
 
-  
-  
   @keyframes scrollPulse {
     0%, 100% { transform: scaleY(1); opacity: 0.5; }
     50% { transform: scaleY(1.3); opacity: 1; }
@@ -409,7 +450,6 @@
   /* ─── SECTION BASE ───────────────────────── */
   section { 
     padding: clamp(80px, min(10vw, 160px), 160px) clamp(30px, min(4vw, 70px), 70px);
-    
     margin: 0 auto;
   }
 
@@ -434,6 +474,13 @@
     margin-bottom: 40px;
   }
   .section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+
+  /* Sur-titres Portfolio & Intelligence Artificielle légèrement agrandis */
+  #portfolio .section-label,
+  #portfolio-ia .section-label {
+    font-size: clamp(1.25rem, 1.8vw, 1.65rem) !important;
+    font-weight: 500;
+  }
 
   .section-title {
     font-family: var(--serif);
@@ -568,7 +615,6 @@
     margin-bottom: 80px;
   }
   .services-container {
-    
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -585,7 +631,6 @@
     align-items: center;
     position: relative;
   }
-  /* Alternance gauche-droite pour créer le Z */
   .service-card:nth-child(even) {
     direction: rtl;
   }
@@ -680,6 +725,19 @@
   .tool-tag:hover {
     background: oklch(0.78 0.14 82 / 0.18);
     border-color: var(--gold);
+  }
+
+  /* ─── PORTFOLIO & PORTFOLIO IA SPACING ───── */
+  #portfolio {
+    padding-bottom: clamp(24px, 3vw, 40px) !important;
+  }
+  #portfolio-ia {
+    padding-top: clamp(24px, 3vw, 40px) !important;
+  }
+  .portfolio-more-wrap {
+    text-align: center;
+    margin-top: 32px;
+    grid-column: 1 / -1;
   }
 
   /* ─── QUOTE ─────────────────────────────── */
@@ -838,7 +896,6 @@
     padding: clamp(100px, min(12vw, 200px), 200px) clamp(30px, min(4vw, 70px), 70px);
     overflow: hidden;
     background: var(--black2);
-    
     margin: 0 auto;
   }
   .cta-bg {
@@ -974,7 +1031,6 @@
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid oklch(0.94 0.008 80 / 0.08);
-    
     margin: 0 auto;
   }
   .footer-logo {
@@ -1047,9 +1103,11 @@
     .marquee-wrap { padding: 12px 0; }
     .marquee-item { font-size: clamp(1rem, min(1.5vw, 1.6rem), 1.6rem); gap: 32px; }
     section { padding: 60px 20px !important; width: 100%; overflow-x: hidden; }
-    #portfolio { padding: 60px 20px !important; }
-    #portfolio-ia { padding: 60px 20px !important; }
+    #portfolio { padding: 60px 20px 20px !important; }
+    #portfolio-ia { padding: 20px 20px 60px !important; }
     .section-label { font-size: 1rem; margin-bottom: 24px; }
+    #portfolio .section-label,
+    #portfolio-ia .section-label { font-size: 1.25rem !important; }
     .section-title { font-size: clamp(2rem, 8vw, 3rem) !important; margin-bottom: 32px; }
     #about::before { display: none; }
     .about-grid { grid-template-columns: 1fr; gap: 32px; margin-bottom: 32px; }
@@ -1428,12 +1486,12 @@ p { text-wrap: pretty; hyphens: none; }
   "@type": "Person",
   "name": "Gilles Massart",
   "alternateName": "MasArtTek",
-  "jobTitle": "Cadreur et Monteur",
+  "jobTitle": "Cadreur et Monteur / Camera Operator & Video Editor",
   "description": "Cadreur et monteur professionnel spécialisé en tournage, montage et post-production audiovisuelle.",
   "email": "mailto:masarttek@gmail.com",
   "url": "https://masarttek.be/",
   "image": "https://masarttek.be/uploads/og-image.jpg",
-  "knowsAbout": ["Tournage", "Montage vidéo", "Étalonnage", "Post-production", "Motion Design"],
+  "knowsAbout": ["Tournage", "Montage vidéo", "Étalonnage", "Post-production", "Motion Design", "AI Video Production"],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Bruxelles",
@@ -1462,21 +1520,30 @@ p { text-wrap: pretty; hyphens: none; }
   </button>
   
   <ul class="nav-links">
-    <li><a href="#about">À propos</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#experience">Parcours</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" data-i18n="nav_about">À propos</a></li>
+    <li><a href="#services" data-i18n="nav_services">Services</a></li>
+    <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
+    <li><a href="#experience" data-i18n="nav_experience">Parcours</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    <li class="lang-switch">
+      <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">FR</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </li>
   </ul>
   
   <div id="mobileMenu" class="mobile-menu">
     <ul class="mobile-menu-links">
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#experience">Parcours</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav_about">À propos</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#portfolio" data-i18n="nav_portfolio">Portfolio</a></li>
+      <li><a href="#experience" data-i18n="nav_experience">Parcours</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
     </ul>
+    <div class="mobile-lang-switch">
+      <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">FR</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
   </div>
   <div id="menuOverlay" class="menu-overlay"></div>
 </nav>
@@ -1486,14 +1553,14 @@ p { text-wrap: pretty; hyphens: none; }
   <div class="hero-bg" id="heroBg"></div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">Gilles Massart, Cadreur &amp; Monteur</div>
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Gilles Massart, Cadreur &amp; Monteur</div>
     <h1 class="hero-title">
-      <span class="line"><span>L'image au service</span></span>
-      <span class="line"><span>de <em>votre</em> histoire.</span></span>
+      <span class="line"><span data-i18n="hero_title_1">L'image au service</span></span>
+      <span class="line"><span data-i18n-html="hero_title_2">de <em>votre</em> histoire.</span></span>
     </h1>
-    <p class="hero-sub">Spécialiste audiovisuel : tournage, montage et post-production pour des projets audiovisuels qui captent, retiennent et marquent les esprits.</p>
+    <p class="hero-sub" data-i18n="hero_sub">Spécialiste audiovisuel : tournage, montage et post-production pour des projets audiovisuels qui captent, retiennent et marquent les esprits.</p>
     <a href="#contact" class="hero-cta">
-      Parlons de votre projet
+      <span data-i18n="hero_cta">Parlons de votre projet</span>
       <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
         <path d="M0 6H18M13 1L19 6L13 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
@@ -1508,22 +1575,22 @@ p { text-wrap: pretty; hyphens: none; }
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <div class="marquee-item">Tournage</div>
-    <div class="marquee-item">Post-Production</div>
-    <div class="marquee-item">Montage</div>
-    <div class="marquee-item">Étalonnage</div>
-    <div class="marquee-item">Motion Design</div>
-    <div class="marquee-item">Multicaméra</div>
-    <div class="marquee-item">Réseaux Sociaux</div>
-    <div class="marquee-item">Adobe Creative Cloud</div>
-    <div class="marquee-item">Tournage</div>
-    <div class="marquee-item">Post-Production</div>
-    <div class="marquee-item">Montage</div>
-    <div class="marquee-item">Étalonnage</div>
-    <div class="marquee-item">Motion Design</div>
-    <div class="marquee-item">Multicaméra</div>
-    <div class="marquee-item">Réseaux Sociaux</div>
-    <div class="marquee-item">Adobe Creative Cloud</div>
+    <div class="marquee-item" data-i18n="marquee_1">Tournage</div>
+    <div class="marquee-item" data-i18n="marquee_2">Post-Production</div>
+    <div class="marquee-item" data-i18n="marquee_3">Montage</div>
+    <div class="marquee-item" data-i18n="marquee_4">Étalonnage</div>
+    <div class="marquee-item" data-i18n="marquee_5">Motion Design</div>
+    <div class="marquee-item" data-i18n="marquee_6">Multicaméra</div>
+    <div class="marquee-item" data-i18n="marquee_7">Réseaux Sociaux</div>
+    <div class="marquee-item" data-i18n="marquee_8">Adobe Creative Cloud</div>
+    <div class="marquee-item" data-i18n="marquee_1">Tournage</div>
+    <div class="marquee-item" data-i18n="marquee_2">Post-Production</div>
+    <div class="marquee-item" data-i18n="marquee_3">Montage</div>
+    <div class="marquee-item" data-i18n="marquee_4">Étalonnage</div>
+    <div class="marquee-item" data-i18n="marquee_5">Motion Design</div>
+    <div class="marquee-item" data-i18n="marquee_6">Multicaméra</div>
+    <div class="marquee-item" data-i18n="marquee_7">Réseaux Sociaux</div>
+    <div class="marquee-item" data-i18n="marquee_8">Adobe Creative Cloud</div>
   </div>
 </div>
 
@@ -1536,15 +1603,15 @@ p { text-wrap: pretty; hyphens: none; }
       </div>
     </div>
     <div class="about-left">
-      <div class="section-label reveal">À propos : qui suis-je ?</div>
-      <h2 class="section-title reveal reveal-delay-1">Une vision<br><em>globale</em><br>de la production.</h2>
+      <div class="section-label reveal" data-i18n="about_label">À propos : qui suis-je ?</div>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n-html="about_title">Une vision<br><em>globale</em><br>de la production.</h2>
       <div class="about-body reveal reveal-delay-2">
-        <p>Je suis <strong>Gilles Massart</strong>, un professionnel passionné de l'audiovisuel, spécialisé en tant que <strong>Cadreur et Monteur</strong>. Mon métier est de transformer vos idées et vos messages en contenus vidéo percutants, esthétiques et mémorables.</p>
-        <p>Autodidacte et passionné de cinéma depuis mon plus jeune âge, j'ai développé une maîtrise approfondie des outils de montage en réalisant des projets personnels variés. Cette curiosité m'a conduit à suivre une formation de réalisateur audiovisuel en 2018, consolidant mes compétences techniques.</p>
-        <p>Au-delà de ma maîtrise de la suite Adobe Creative Cloud (Premiere Pro, After Effects, Photoshop), j'intègre désormais l'intelligence artificielle (Midjourney, Gemini, Nano Banana Pro, Runway, Topaz, Seedance, Kling, Veo) dans mon flux de travail pour optimiser la création visuelle.</p>
-        <p><strong>Vision complète :</strong> je travaille avec la perspective du montage dès le tournage, pour une efficacité maximale sur le plateau et un résultat final optimisé.</p>
-        <p><strong>Qualité et créativité :</strong> je m'engage à fournir des vidéos techniquement irréprochables, portées par une signature visuelle forte.</p>
-        <p><strong>Proximité et écoute :</strong> votre projet est unique, l'écoute de vos besoins et la collaboration sont au cœur de mon processus.</p>
+        <p data-i18n-html="about_p1">Je suis <strong>Gilles Massart</strong>, un professionnel passionné de l'audiovisuel, spécialisé en tant que <strong>Cadreur et Monteur</strong>. Mon métier est de transformer vos idées et vos messages en contenus vidéo percutants, esthétiques et mémorables.</p>
+        <p data-i18n-html="about_p2">Autodidacte et passionné de cinéma depuis mon plus jeune âge, j'ai développé une maîtrise approfondie des outils de montage en réalisant des projets personnels variés. Cette curiosité m'a conduit à suivre une formation de réalisateur audiovisuel en 2018, consolidant mes compétences techniques.</p>
+        <p data-i18n-html="about_p3">Au-delà de ma maîtrise de la suite Adobe Creative Cloud (Premiere Pro, After Effects, Photoshop), j'intègre désormais l'intelligence artificielle (Midjourney, Gemini, Nano Banana Pro, Runway, Topaz, Seedance, Kling, Veo) dans mon flux de travail pour optimiser la création visuelle.</p>
+        <p data-i18n-html="about_p4"><strong>Vision complète :</strong> je travaille avec la perspective du montage dès le tournage, pour une efficacité maximale sur le plateau et un résultat final optimisé.</p>
+        <p data-i18n-html="about_p5"><strong>Qualité et créativité :</strong> je m'engage à fournir des vidéos techniquement irréprochables, portées par une signature visuelle forte.</p>
+        <p data-i18n-html="about_p6"><strong>Proximité et écoute :</strong> votre projet est unique, l'écoute de vos besoins et la collaboration sont au cœur de mon processus.</p>
       </div>
     </div>
   </div>
@@ -1553,8 +1620,8 @@ p { text-wrap: pretty; hyphens: none; }
 <!-- SERVICES -->
 <section id="services">
   <div class="services-header">
-    <div class="section-label reveal">Services</div>
-    <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto;">Ce que je<br><em>vous propose</em></h2>
+    <div class="section-label reveal" data-i18n="services_label">Services</div>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto;" data-i18n-html="services_title">Ce que je<br><em>vous propose</em></h2>
   </div>
   <div class="services-container">
     <div class="services-grid">
@@ -1564,13 +1631,13 @@ p { text-wrap: pretty; hyphens: none; }
         </div>
         <div class="service-content">
           <div class="service-num">01</div>
-          <h3 class="service-title">Tournage &<br><em>Cadrage</em></h3>
-          <p class="service-desc">Je ne me contente pas de filmer : je compose l'image. J'apporte une attention méticuleuse à la lumière, au mouvement et au cadre pour capter l'essence de votre sujet, qu'il s'agisse d'un documentaire, d'un clip promotionnel ou d'une interview.</p>
+          <h3 class="service-title" data-i18n-html="srv1_title">Tournage &<br><em>Cadrage</em></h3>
+          <p class="service-desc" data-i18n="srv1_desc">Je ne me contente pas de filmer : je compose l'image. J'apporte une attention méticuleuse à la lumière, au mouvement et au cadre pour capter l'essence de votre sujet, qu'il s'agisse d'un documentaire, d'un clip promotionnel ou d'une interview.</p>
           <div class="service-tools">
-            <span class="tool-tag">Interviews</span>
-            <span class="tool-tag">Événements</span>
-            <span class="tool-tag">Clips</span>
-            <span class="tool-tag">Documentaires</span>
+            <span class="tool-tag" data-i18n="srv1_tag1">Interviews</span>
+            <span class="tool-tag" data-i18n="srv1_tag2">Événements</span>
+            <span class="tool-tag" data-i18n="srv1_tag3">Clips</span>
+            <span class="tool-tag" data-i18n="srv1_tag4">Documentaires</span>
           </div>
         </div>
       </div>
@@ -1581,13 +1648,13 @@ p { text-wrap: pretty; hyphens: none; }
         </div>
         <div class="service-content">
           <div class="service-num">02</div>
-          <h3 class="service-title">Montage &<br><em>Post-Production</em></h3>
-          <p class="service-desc">C'est là que l'histoire prend tout son sens : je donne du rythme, de l'émotion et de la fluidité à vos séquences. J'assure l'étalonnage, le mixage son et l'intégration d'éléments graphiques pour un rendu fidèle à votre vision.</p>
+          <h3 class="service-title" data-i18n-html="srv2_title">Montage &<br><em>Post-Production</em></h3>
+          <p class="service-desc" data-i18n="srv2_desc">C'est là que l'histoire prend tout son sens : je donne du rythme, de l'émotion et de la fluidité à vos séquences. J'assure l'étalonnage, le mixage son et l'intégration d'éléments graphiques pour un rendu fidèle à votre vision.</p>
           <div class="service-tools">
-            <span class="tool-tag">Montage créatif</span>
-            <span class="tool-tag">Étalonnage</span>
-            <span class="tool-tag">Mixage son</span>
-            <span class="tool-tag">Effets VFX</span>
+            <span class="tool-tag" data-i18n="srv2_tag1">Montage créatif</span>
+            <span class="tool-tag" data-i18n="srv2_tag2">Étalonnage</span>
+            <span class="tool-tag" data-i18n="srv2_tag3">Mixage son</span>
+            <span class="tool-tag" data-i18n="srv2_tag4">Effets VFX</span>
           </div>
         </div>
       </div>
@@ -1598,8 +1665,8 @@ p { text-wrap: pretty; hyphens: none; }
         </div>
         <div class="service-content">
           <div class="service-num">03</div>
-          <h3 class="service-title">IA &<br><em>Création Visuelle</em></h3>
-          <p class="service-desc">Formé aux outils IA de pointe, j'intègre l'intelligence artificielle à mon flux de production pour optimiser chaque étape. Génération d'assets, amélioration d'image, upscaling et effets innovants pour des résultats uniques qui repoussent les limites.</p>
+          <h3 class="service-title" data-i18n-html="srv3_title">IA &<br><em>Création Visuelle</em></h3>
+          <p class="service-desc" data-i18n="srv3_desc">Formé aux outils IA de pointe, j'intègre l'intelligence artificielle à mon flux de production pour optimiser chaque étape. Génération d'assets, amélioration d'image, upscaling et effets innovants pour des résultats uniques qui repoussent les limites.</p>
           <div class="service-tools">
             <span class="tool-tag">Seedance</span>
             <span class="tool-tag">Kling</span>
@@ -1616,9 +1683,9 @@ p { text-wrap: pretty; hyphens: none; }
 </section>
 
 <!-- PORTFOLIO -->
-<section id="portfolio" style="background: var(--black2); padding: clamp(80px, min(10vw, 160px), 160px) clamp(30px, min(4vw, 70px), 70px);">
-  <div class="section-label reveal" style="text-align: center;">Portfolio</div>
-  <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto 80px;">Mes dernières<br><em>créations</em></h2>
+<section id="portfolio" style="background: var(--black2); padding: clamp(80px, min(10vw, 160px), 160px) clamp(30px, min(4vw, 70px), 70px) clamp(24px, 3vw, 40px);">
+  <div class="section-label reveal" style="text-align: center;" data-i18n="port_label">Portfolio</div>
+  <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto 80px;" data-i18n-html="port_title">Mes dernières<br><em>créations</em></h2>
   
   <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, min(2.5vw, 40px), 40px); margin: 0 auto;">
     <div class="portfolio-item reveal-delay-0" style="position: relative; aspect-ratio: 16/9; background: var(--black); border-radius: 4px; overflow: hidden; cursor: pointer;">
@@ -1696,18 +1763,18 @@ p { text-wrap: pretty; hyphens: none; }
       <a href="https://www.youtube.com/watch?v=TsnImpUEAEo" target="_blank" style="position: absolute; inset: 0;"></a>
     </div>
 
-  <div style="text-align: center; margin-top: 60px; grid-column: 1 / -1;">
-    <button id="portfolioShowMore" class="cta-button reveal" style="display: inline-block; padding: 18px 40px; background: var(--gold); border: 1px solid var(--gold); color: var(--black); letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; border-radius: 2px; cursor: pointer; font-family: inherit;" onmouseover="this.style.background='transparent'; this.style.color='var(--gold)'" onmouseout="this.style.background='var(--gold)'; this.style.color='var(--black)'">
-      Voir plus de projets
-    </button>
-  </div>
+    <div class="portfolio-more-wrap">
+      <button id="portfolioShowMore" class="cta-button reveal" data-i18n="port_btn_more" style="display: inline-block; padding: 18px 40px; background: var(--gold); border: 1px solid var(--gold); color: var(--black); letter-spacing: 0.15em; text-transform: uppercase; transition: all 0.3s; border-radius: 2px; cursor: pointer; font-family: inherit;" onmouseover="this.style.background='transparent'; this.style.color='var(--gold)'" onmouseout="this.style.background='var(--gold)'; this.style.color='var(--black)'">
+        Voir plus de projets
+      </button>
+    </div>
   </div>
 </section>
 
 <!-- PORTFOLIO IA -->
-<section id="portfolio-ia" style="background: var(--black2); padding: clamp(80px, min(10vw, 160px), 160px) clamp(30px, min(4vw, 70px), 70px);">
-  <div class="section-label reveal" style="text-align: center;">Intelligence Artificielle</div>
-  <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto 80px;">Mes créations<br><em>IA</em></h2>
+<section id="portfolio-ia" style="background: var(--black2); padding: clamp(24px, 3vw, 40px) clamp(30px, min(4vw, 70px), 70px) clamp(80px, min(10vw, 160px), 160px);">
+  <div class="section-label reveal" style="text-align: center;" data-i18n="port_ia_label">Intelligence Artificielle</div>
+  <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto 80px;" data-i18n-html="port_ia_title">Mes créations<br><em>IA</em></h2>
   
   <div class="portfolio-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, min(2.5vw, 40px), 40px); margin: 0 auto;">
     <div class="portfolio-item reveal-delay-0" style="position: relative; aspect-ratio: 16/9; background: var(--black); border-radius: 4px; overflow: hidden; cursor: pointer;">
@@ -1732,15 +1799,6 @@ p { text-wrap: pretty; hyphens: none; }
   </div>
 </section>
 
-<script>
-document.getElementById('portfolioShowMore').addEventListener('click', function() {
-  const hiddenItems = document.querySelectorAll('.portfolio-hidden');
-  const isHidden = hiddenItems[0].style.display === 'none';
-  hiddenItems.forEach(item => { item.style.display = isHidden ? 'block' : 'none'; });
-  this.textContent = isHidden ? 'Voir moins' : 'Voir plus de projets';
-});
-</script>
-
 <!-- QUOTE -->
 <section id="quote">
   <div class="quotes-container">
@@ -1749,7 +1807,7 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
     
     <div class="quotes-slider">
       <div class="quote-item">
-        <blockquote class="quote-text">
+        <blockquote class="quote-text" data-i18n="quote_1">
           « La production est d'excellente qualité et répond parfaitement à mes attentes ! Un excellent travail durant des années. »
         </blockquote>
         <div class="quote-author">
@@ -1759,7 +1817,7 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
       </div>
       
       <div class="quote-item">
-        <blockquote class="quote-text">
+        <blockquote class="quote-text" data-i18n="quote_2">
           « J'ai eu le plaisir de travailler en étroite collaboration avec Gilles lors de nos tournages en Inde et à Dubaï. Le résultat final a été particulièrement satisfaisant et a dépassé nos attentes. »
         </blockquote>
         <div class="quote-author">
@@ -1769,7 +1827,7 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
       </div>
       
       <div class="quote-item">
-        <blockquote class="quote-text">
+        <blockquote class="quote-text" data-i18n="quote_3">
           « Le projet réalisé lors du lancement de mon club de foot, La RAAL - La Louvière, était tout simplement d'une grande qualité. Je recommande vivement pour toute future collaboration. »
         </blockquote>
         <div class="quote-author">
@@ -1785,30 +1843,6 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
       <button class="carousel-dot" onclick="goToSlide(2)"></button>
     </div>
   </div>
-  
-  <script>
-    let currentSlide = 0;
-    const totalSlides = 3;
-    
-    function updateCarousel() {
-      const slider = document.querySelector('.quotes-slider');
-      const dots = document.querySelectorAll('.carousel-dot');
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-      dots.forEach((dot, index) => { dot.classList.toggle('active', index === currentSlide); });
-    }
-    
-    function moveCarousel(direction) {
-      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-      updateCarousel();
-    }
-    
-    function goToSlide(index) {
-      currentSlide = index;
-      updateCarousel();
-    }
-    
-    setInterval(() => { moveCarousel(1); }, 8000);
-  </script>
 </section>
 
 <!-- EXPERIENCE -->
@@ -1816,40 +1850,40 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
   <div class="exp-list">
     <div class="exp-item active reveal" onclick="setActive(this)">
       <div class="exp-company">Entreprendre et Vivre</div>
-      <div class="exp-role">Production Complète<br>A à Z</div>
+      <div class="exp-role" data-i18n-html="exp1_role">Production Complète<br>A à Z</div>
       <div class="exp-year">2021-2026</div>
-      <div class="exp-detail">
+      <div class="exp-detail" data-i18n="exp1_detail">
         Gestion de projets de bout en bout, de la pré-production à la diffusion sur les réseaux sociaux. Responsable des chaînes YouTube "Entreprendre et Vivre" et "Honest Entrepreneur Interviews". Production, tournage, montage et stratégie éditoriale.
       </div>
     </div>
     <div class="exp-item reveal reveal-delay-1" onclick="setActive(this)">
       <div class="exp-company">Clearshot & DC3 Studio</div>
-      <div class="exp-role">Chef Opérateur<br>&amp; Monteur</div>
-      <div class="exp-year">Expérience plateau</div>
-      <div class="exp-detail">
+      <div class="exp-role" data-i18n-html="exp2_role">Chef Opérateur<br>&amp; Monteur</div>
+      <div class="exp-year" data-i18n="exp2_year">Expérience plateau</div>
+      <div class="exp-detail" data-i18n="exp2_detail">
         Exercice des fonctions de chef opérateur, cadreur et monteur en plateau professionnel. Gestion de l'éclairage, de la prise de son et de la régie technique sur des productions variées.
       </div>
     </div>
     <div class="exp-item reveal reveal-delay-2" onclick="setActive(this)">
       <div class="exp-company">Fun Radio Belgique</div>
-      <div class="exp-role">Clips, Jingles<br>&amp; Lives Multicaméras</div>
-      <div class="exp-year">Expérience radio / TV</div>
-      <div class="exp-detail">
+      <div class="exp-role" data-i18n-html="exp3_role">Clips, Jingles<br>&amp; Lives Multicaméras</div>
+      <div class="exp-year" data-i18n="exp3_year">Expérience radio / TV</div>
+      <div class="exp-detail" data-i18n="exp3_detail">
         Réalisation de clips musicaux et jingles vidéo pour l'une des radios majeures de Belgique. Gestion et direction de productions lives en format multicaméra, coordination technique en direct.
       </div>
     </div>
     <div class="exp-item reveal reveal-delay-3" onclick="setActive(this)">
-      <div class="exp-company">Formation</div>
-      <div class="exp-role">Réalisateur<br>Audiovisuel</div>
+      <div class="exp-company" data-i18n="exp4_company">Formation</div>
+      <div class="exp-role" data-i18n-html="exp4_role">Réalisateur<br>Audiovisuel</div>
       <div class="exp-year">2018</div>
-      <div class="exp-detail">
+      <div class="exp-detail" data-i18n="exp4_detail">
         Formation certifiante de réalisateur audiovisuel, venant consolider une pratique autodidacte approfondie développée depuis l'enfance. Maîtrise technique de la chaîne de production complète.
       </div>
     </div>
   </div>
   <div class="exp-sticky reveal">
-    <div class="section-label">Parcours</div>
-    <h2 class="section-title" style="margin-bottom:40px;">Expériences<br><em>professionnelles</em></h2>
+    <div class="section-label" data-i18n="exp_label">Parcours</div>
+    <h2 class="section-title" style="margin-bottom:40px;" data-i18n-html="exp_title">Expériences<br><em>professionnelles</em></h2>
     <div class="exp-visual">
       <img src="uploads/gilles-interview-raal.webp" alt="Gilles Massart en tournage d'interview à la RAAL La Louvière" style="object-position: 20% 35%;">
     </div>
@@ -1860,19 +1894,19 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
 <section id="cta">
   <div class="cta-bg"></div>
   <div class="cta-inner">
-    <div class="section-label reveal">Prêts à tourner ?</div>
-    <h2 class="cta-title reveal reveal-delay-1">
+    <div class="section-label reveal" data-i18n="cta_label">Prêts à tourner ?</div>
+    <h2 class="cta-title reveal reveal-delay-1" data-i18n-html="cta_title">
       Ne laissez pas votre message se noyer dans <em style="white-space: nowrap;">le flux.</em>
     </h2>
-    <p class="reveal reveal-delay-1" style="color: var(--muted); font-size: clamp(1.1rem, 1.6vw, 1.4rem); max-width: 640px; margin-top: -8px;">Le contenu vidéo est le <strong style="color: var(--white);">moteur de l'engagement</strong> en ligne. En choisissant un cadreur/monteur expérimenté, vous vous assurez :</p>
+    <p class="reveal reveal-delay-1" style="color: var(--muted); font-size: clamp(1.1rem, 1.6vw, 1.4rem); max-width: 640px; margin-top: -8px;" data-i18n-html="cta_sub">Le contenu vidéo est le <strong style="color: var(--white);">moteur de l'engagement</strong> en ligne. En choisissant un cadreur/monteur expérimenté, vous vous assurez :</p>
     <div class="cta-points reveal reveal-delay-2">
-      <div class="cta-point">Des images captivantes qui racontent une histoire.</div>
-      <div class="cta-point">Un montage rythmé et professionnel qui retient l'attention.</div>
-      <div class="cta-point">Un produit final optimisé pour vos plateformes : web, réseaux sociaux, TV.</div>
+      <div class="cta-point" data-i18n="cta_pt1">Des images captivantes qui racontent une histoire.</div>
+      <div class="cta-point" data-i18n="cta_pt2">Un montage rythmé et professionnel qui retient l'attention.</div>
+      <div class="cta-point" data-i18n="cta_pt3">Un produit final optimisé pour vos plateformes : web, réseaux sociaux, TV.</div>
     </div>
-    <p class="reveal reveal-delay-2" style="color: var(--white); font-style: italic; font-family: var(--serif); font-size: clamp(1.2rem, 1.8vw, 1.6rem); margin-bottom: 32px;">Ne vous contentez plus de filmer, créez un impact.</p>
+    <p class="reveal reveal-delay-2" style="color: var(--white); font-style: italic; font-family: var(--serif); font-size: clamp(1.2rem, 1.8vw, 1.6rem); margin-bottom: 32px;" data-i18n="cta_closing">Ne vous contentez plus de filmer, créez un impact.</p>
     <a href="#contact" class="btn-primary reveal reveal-delay-3">
-      Créer un impact
+      <span data-i18n="cta_btn">Créer un impact</span>
       <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
         <path d="M0 5H16M11 1L17 5L11 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
@@ -1882,8 +1916,8 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label reveal">Contact</div>
-  <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto 60px;">Donnons vie à<br><em>votre projet.</em></h2>
+  <div class="section-label reveal" data-i18n="contact_label">Contact</div>
+  <h2 class="section-title reveal reveal-delay-1" style="text-align: center; max-width: 700px; margin: 0 auto 60px;" data-i18n-html="contact_title">Donnons vie à<br><em>votre projet.</em></h2>
   <div class="contact-grid">
     <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleSubmit(event)">
       <input type="hidden" name="access_key" value="f39f0347-7bb5-4511-9420-892f1717be1b">
@@ -1891,19 +1925,19 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
       <input type="hidden" name="from_name" value="Site MasArtTek">
       <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-group">
-        <label class="form-label">Votre nom</label>
-        <input type="text" name="name" class="form-input" placeholder="Jean Dupont" required>
+        <label class="form-label" data-i18n="form_name">Votre nom</label>
+        <input type="text" name="name" class="form-input" placeholder="Jean Dupont" data-i18n-placeholder="form_name_ph" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Email</label>
-        <input type="email" name="email" class="form-input" placeholder="jean@exemple.com" required>
+        <label class="form-label" data-i18n="form_email">Email</label>
+        <input type="email" name="email" class="form-input" placeholder="jean@exemple.com" data-i18n-placeholder="form_email_ph" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Votre projet</label>
-        <textarea name="message" class="form-textarea" placeholder="Décrivez votre projet en quelques mots..." required></textarea>
+        <label class="form-label" data-i18n="form_project">Votre projet</label>
+        <textarea name="message" class="form-textarea" placeholder="Décrivez votre projet en quelques mots..." data-i18n-placeholder="form_project_ph" required></textarea>
       </div>
       <button type="submit" class="btn-primary" style="align-self:flex-start;margin-top:8px;">
-        <span id="btnText">Envoyer le message</span>
+        <span id="btnText" data-i18n="form_submit">Envoyer le message</span>
         <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
           <path d="M0 5H16M11 1L17 5L11 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
@@ -1915,8 +1949,8 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
         <a href="mailto:masarttek@gmail.com" class="info-value">masarttek@gmail.com</a>
       </div>
       <div class="contact-info-item">
-        <span class="info-label">Localisation</span>
-        <span class="info-value" style="cursor:default;">Belgique</span>
+        <span class="info-label" data-i18n="info_loc_label">Localisation</span>
+        <span class="info-value" style="cursor:default;" data-i18n="info_loc_val">Belgique</span>
       </div>
     </div>
   </div>
@@ -1927,15 +1961,292 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
   <div class="footer-logo">
     <img src="uploads/logo-icon.png" alt="MasArtTek" style="height: 80px; width: 80px; opacity: 1">
   </div>
-  <p class="footer-copy">© 2026 MasArtTek. Tous droits réservés · Bruxelles, Belgique · <a href="mailto:masarttek@gmail.com" style="color: inherit; text-decoration: underline;">masarttek@gmail.com</a></p>
+  <p class="footer-copy" data-i18n-html="footer_copy">© 2026 MasArtTek. Tous droits réservés · Bruxelles, Belgique · <a href="mailto:masarttek@gmail.com" style="color: inherit; text-decoration: underline;">masarttek@gmail.com</a></p>
   <ul class="footer-links">
-    <li><a href="#about">À propos</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" data-i18n="nav_about">À propos</a></li>
+    <li><a href="#services" data-i18n="nav_services">Services</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
   </ul>
 </footer>
 
 <script>
+  /* ─── TRANSLATIONS & LANGUAGE LOGIC ──────── */
+  const translations = {
+    fr: {
+      page_title: "Gilles Massart, Cadreur & Monteur | MasArtTek",
+      meta_desc: "Gilles Massart, cadreur et monteur professionnel : tournage, montage, étalonnage et post-production. Je transforme vos idées en contenus vidéo percutants, esthétiques et mémorables.",
+      nav_about: "À propos",
+      nav_services: "Services",
+      nav_portfolio: "Portfolio",
+      nav_experience: "Parcours",
+      nav_contact: "Contact",
+      hero_eyebrow: "Gilles Massart, Cadreur & Monteur",
+      hero_title_1: "L'image au service",
+      hero_title_2: "de <em>votre</em> histoire.",
+      hero_sub: "Spécialiste audiovisuel : tournage, montage et post-production pour des projets audiovisuels qui captent, retiennent et marquent les esprits.",
+      hero_cta: "Parlons de votre projet",
+      marquee_1: "Tournage",
+      marquee_2: "Post-Production",
+      marquee_3: "Montage",
+      marquee_4: "Étalonnage",
+      marquee_5: "Motion Design",
+      marquee_6: "Multicaméra",
+      marquee_7: "Réseaux Sociaux",
+      marquee_8: "Adobe Creative Cloud",
+      about_label: "À propos : qui suis-je ?",
+      about_title: "Une vision<br><em>globale</em><br>de la production.",
+      about_p1: "Je suis <strong>Gilles Massart</strong>, un professionnel passionné de l'audiovisuel, spécialisé en tant que <strong>Cadreur et Monteur</strong>. Mon métier est de transformer vos idées et vos messages en contenus vidéo percutants, esthétiques et mémorables.",
+      about_p2: "Autodidacte et passionné de cinéma depuis mon plus jeune âge, j'ai développé une maîtrise approfondie des outils de montage en réalisant des projets personnels variés. Cette curiosité m'a conduit à suivre une formation de réalisateur audiovisuel en 2018, consolidant mes compétences techniques.",
+      about_p3: "Au-delà de ma maîtrise de la suite Adobe Creative Cloud (Premiere Pro, After Effects, Photoshop), j'intègre désormais l'intelligence artificielle (Midjourney, Gemini, Nano Banana Pro, Runway, Topaz, Seedance, Kling, Veo) dans mon flux de travail pour optimiser la création visuelle.",
+      about_p4: "<strong>Vision complète :</strong> je travaille avec la perspective du montage dès le tournage, pour une efficacité maximale sur le plateau et un résultat final optimisé.",
+      about_p5: "<strong>Qualité et créativité :</strong> je m'engage à fournir des vidéos techniquement irréprochables, portées par une signature visuelle forte.",
+      about_p6: "<strong>Proximité et écoute :</strong> votre projet est unique, l'écoute de vos besoins et la collaboration sont au cœur de mon processus.",
+      services_label: "Services",
+      services_title: "Ce que je<br><em>vous propose</em>",
+      srv1_title: "Tournage &<br><em>Cadrage</em>",
+      srv1_desc: "Je ne me contente pas de filmer : je compose l'image. J'apporte une attention méticuleuse à la lumière, au mouvement et au cadre pour capter l'essence de votre sujet, qu'il s'agisse d'un documentaire, d'un clip promotionnel ou d'une interview.",
+      srv1_tag1: "Interviews",
+      srv1_tag2: "Événements",
+      srv1_tag3: "Clips",
+      srv1_tag4: "Documentaires",
+      srv2_title: "Montage &<br><em>Post-Production</em>",
+      srv2_desc: "C'est là que l'histoire prend tout son sens : je donne du rythme, de l'émotion et de la fluidité à vos séquences. J'assure l'étalonnage, le mixage son et l'intégration d'éléments graphiques pour un rendu fidèle à votre vision.",
+      srv2_tag1: "Montage créatif",
+      srv2_tag2: "Étalonnage",
+      srv2_tag3: "Mixage son",
+      srv2_tag4: "Effets VFX",
+      srv3_title: "IA &<br><em>Création Visuelle</em>",
+      srv3_desc: "Formé aux outils IA de pointe, j'intègre l'intelligence artificielle à mon flux de production pour optimiser chaque étape. Génération d'assets, amélioration d'image, upscaling et effets innovants pour des résultats uniques qui repoussent les limites.",
+      port_label: "Portfolio",
+      port_title: "Mes dernières<br><em>créations</em>",
+      port_btn_more: "Voir plus de projets",
+      port_btn_less: "Voir moins",
+      port_ia_label: "Intelligence Artificielle",
+      port_ia_title: "Mes créations<br><em>IA</em>",
+      quote_1: "« La production est d'excellente qualité et répond parfaitement à mes attentes ! Un excellent travail durant des années. »",
+      quote_2: "« J'ai eu le plaisir de travailler en étroite collaboration avec Gilles lors de nos tournages en Inde et à Dubaï. Le résultat final a été particulièrement satisfaisant et a dépassé nos attentes. »",
+      quote_3: "« Le projet réalisé lors du lancement de mon club de foot, La RAAL - La Louvière, était tout simplement d'une grande qualité. Je recommande vivement pour toute future collaboration. »",
+      exp_label: "Parcours",
+      exp_title: "Expériences<br><em>professionnelles</em>",
+      exp1_role: "Production Complète<br>A à Z",
+      exp1_detail: "Gestion de projets de bout en bout, de la pré-production à la diffusion sur les réseaux sociaux. Responsable des chaînes YouTube \"Entreprendre et Vivre\" et \"Honest Entrepreneur Interviews\". Production, tournage, montage et stratégie éditoriale.",
+      exp2_role: "Chef Opérateur<br>&amp; Monteur",
+      exp2_year: "Expérience plateau",
+      exp2_detail: "Exercice des fonctions de chef opérateur, cadreur et monteur en plateau professionnel. Gestion de l'éclairage, de la prise de son et de la régie technique sur des productions variées.",
+      exp3_role: "Clips, Jingles<br>&amp; Lives Multicaméras",
+      exp3_year: "Expérience radio / TV",
+      exp3_detail: "Réalisation de clips musicaux et jingles vidéo pour l'une des radios majeures de Belgique. Gestion et direction de productions lives en format multicaméra, coordination technique en direct.",
+      exp4_company: "Formation",
+      exp4_role: "Réalisateur<br>Audiovisuel",
+      exp4_detail: "Formation certifiante de réalisateur audiovisuel, venant consolider une pratique autodidacte approfondie développée depuis l'enfance. Maîtrise technique de la chaîne de production complète.",
+      cta_label: "Prêts à tourner ?",
+      cta_title: "Ne laissez pas votre message se noyer dans <em style=\"white-space: nowrap;\">le flux.</em>",
+      cta_sub: "Le contenu vidéo est le <strong style=\"color: var(--white);\">moteur de l'engagement</strong> en ligne. En choisissant un cadreur/monteur expérimenté, vous vous assurez :",
+      cta_pt1: "Des images captivantes qui racontent une histoire.",
+      cta_pt2: "Un montage rythmé et professionnel qui retient l'attention.",
+      cta_pt3: "Un produit final optimisé pour vos plateformes : web, réseaux sociaux, TV.",
+      cta_closing: "Ne vous contentez plus de filmer, créez un impact.",
+      cta_btn: "Créer un impact",
+      contact_label: "Contact",
+      contact_title: "Donnons vie à<br><em>votre projet.</em>",
+      form_name: "Votre nom",
+      form_name_ph: "Jean Dupont",
+      form_email: "Email",
+      form_email_ph: "jean@exemple.com",
+      form_project: "Votre projet",
+      form_project_ph: "Décrivez votre projet en quelques mots...",
+      form_submit: "Envoyer le message",
+      form_sending: "Envoi…",
+      form_sent: "Message envoyé ✓",
+      form_error: "Erreur, réessayez",
+      info_loc_label: "Localisation",
+      info_loc_val: "Belgique",
+      footer_copy: "© 2026 MasArtTek. Tous droits réservés · Bruxelles, Belgique · <a href=\"mailto:masarttek@gmail.com\" style=\"color: inherit; text-decoration: underline;\">masarttek@gmail.com</a>"
+    },
+    en: {
+      page_title: "Gilles Massart, Camera Operator & Video Editor | MasArtTek",
+      meta_desc: "Gilles Massart, professional camera operator and video editor: filming, editing, color grading, and post-production. Transforming your ideas into impactful, aesthetic, and memorable video content.",
+      nav_about: "About",
+      nav_services: "Services",
+      nav_portfolio: "Portfolio",
+      nav_experience: "Experience",
+      nav_contact: "Contact",
+      hero_eyebrow: "Gilles Massart, Camera Operator & Video Editor",
+      hero_title_1: "Visuals at the service",
+      hero_title_2: "of <em>your</em> story.",
+      hero_sub: "Audiovisual specialist: filming, editing, and post-production for video projects that captivate, engage, and leave a lasting impression.",
+      hero_cta: "Let's discuss your project",
+      marquee_1: "Filming",
+      marquee_2: "Post-Production",
+      marquee_3: "Video Editing",
+      marquee_4: "Color Grading",
+      marquee_5: "Motion Design",
+      marquee_6: "Multi-Camera",
+      marquee_7: "Social Media",
+      marquee_8: "Adobe Creative Cloud",
+      about_label: "About: who am I?",
+      about_title: "A <em>holistic</em><br>vision of<br>production.",
+      about_p1: "I am <strong>Gilles Massart</strong>, a passionate audiovisual professional specializing as a <strong>Camera Operator and Video Editor</strong>. My mission is to transform your ideas and messages into impactful, aesthetic, and memorable video content.",
+      about_p2: "Self-taught and passionate about cinema from a young age, I developed an in-depth mastery of editing tools through diverse personal projects. This curiosity led me to complete a degree in Audiovisual Directing in 2018, solidifying my technical skills.",
+      about_p3: "Beyond my command of the Adobe Creative Cloud suite (Premiere Pro, After Effects, Photoshop), I now integrate artificial intelligence (Midjourney, Gemini, Nano Banana Pro, Runway, Topaz, Seedance, Kling, Veo) into my workflow to optimize visual creation.",
+      about_p4: "<strong>End-to-end vision:</strong> I shoot with the final edit in mind right from the set, ensuring maximum efficiency during production and an optimized final cut.",
+      about_p5: "<strong>Quality and creativity:</strong> I am committed to delivering technically flawless videos driven by a strong visual signature.",
+      about_p6: "<strong>Closeness and listening:</strong> your project is unique; understanding your needs and collaborating closely are at the heart of my process.",
+      services_label: "Services",
+      services_title: "What I<br><em>offer you</em>",
+      srv1_title: "Filming &<br><em>Cinematography</em>",
+      srv1_desc: "I don't just record: I compose the frame. I bring meticulous attention to lighting, movement, and framing to capture the essence of your subject, whether it's a documentary, a promotional clip, or an interview.",
+      srv1_tag1: "Interviews",
+      srv1_tag2: "Events",
+      srv1_tag3: "Music Videos",
+      srv1_tag4: "Documentaries",
+      srv2_title: "Editing &<br><em>Post-Production</em>",
+      srv2_desc: "This is where the story comes to life: I bring rhythm, emotion, and flow to your footage. I handle color grading, sound mixing, and motion graphics integration for a result true to your vision.",
+      srv2_tag1: "Creative Editing",
+      srv2_tag2: "Color Grading",
+      srv2_tag3: "Sound Mixing",
+      srv2_tag4: "VFX Effects",
+      srv3_title: "AI &<br><em>Visual Creation</em>",
+      srv3_desc: "Trained in cutting-edge AI tools, I integrate artificial intelligence into my production pipeline to enhance every step. Asset generation, image enhancement, upscaling, and innovative effects for unique results that push boundaries.",
+      port_label: "Portfolio",
+      port_title: "My latest<br><em>creations</em>",
+      port_btn_more: "View more projects",
+      port_btn_less: "Show less",
+      port_ia_label: "Artificial Intelligence",
+      port_ia_title: "My AI<br><em>creations</em>",
+      quote_1: "“The production is of outstanding quality and meets my expectations perfectly! Great work over the years.”",
+      quote_2: "“I had the pleasure of working closely with Gilles during our shoots in India and Dubai. The final result was particularly satisfying and exceeded our expectations.”",
+      quote_3: "“The project produced for the launch of my football club, La RAAL - La Louvière, was simply top quality. I highly recommend him for any future collaboration.”",
+      exp_label: "Background",
+      exp_title: "Professional<br><em>experience</em>",
+      exp1_role: "End-to-End<br>Production",
+      exp1_detail: "Full project management from pre-production to social media distribution. Lead producer for the YouTube channels \"Entreprendre et Vivre\" and \"Honest Entrepreneur Interviews\". Production, filming, editing, and editorial strategy.",
+      exp2_role: "Director of Photography<br>&amp; Editor",
+      exp2_year: "Studio experience",
+      exp2_detail: "Worked as Director of Photography, camera operator, and editor on professional sets. Managed lighting, sound recording, and technical operations across diverse productions.",
+      exp3_role: "Music Videos, Jingles<br>&amp; Multi-Cam Lives",
+      exp3_year: "Radio / TV experience",
+      exp3_detail: "Directed music videos and video jingles for one of Belgium's leading radio stations. Managed and directed live multi-camera broadcasts with real-time technical coordination.",
+      exp4_company: "Education",
+      exp4_role: "Audiovisual<br>Director",
+      exp4_detail: "Certified training in Audiovisual Directing, consolidating years of self-taught practice developed since childhood. Full technical command of the production pipeline.",
+      cta_label: "Ready to roll?",
+      cta_title: "Don't let your message get lost in <em style=\"white-space: nowrap;\">the feed.</em>",
+      cta_sub: "Video content is the <strong style=\"color: var(--white);\">engine of online engagement</strong>. By choosing an experienced camera operator and editor, you ensure:",
+      cta_pt1: "Captivating visuals that tell a compelling story.",
+      cta_pt2: "Dynamic, professional editing that holds viewers' attention.",
+      cta_pt3: "A final product optimized for your platforms: web, social media, TV.",
+      cta_closing: "Stop just filming, start making an impact.",
+      cta_btn: "Create an impact",
+      contact_label: "Contact",
+      contact_title: "Let's bring<br><em>your project to life.</em>",
+      form_name: "Your name",
+      form_name_ph: "John Doe",
+      form_email: "Email",
+      form_email_ph: "john@example.com",
+      form_project: "Your project",
+      form_project_ph: "Tell me a few words about your project...",
+      form_submit: "Send message",
+      form_sending: "Sending…",
+      form_sent: "Message sent ✓",
+      form_error: "Error, please try again",
+      info_loc_label: "Location",
+      info_loc_val: "Belgium",
+      footer_copy: "© 2026 MasArtTek. All rights reserved · Brussels, Belgium · <a href=\"mailto:masarttek@gmail.com\" style=\"color: inherit; text-decoration: underline;\">masarttek@gmail.com</a>"
+    }
+  };
+
+  function getInitialLanguage() {
+    const savedLang = localStorage.getItem('masarttek_lang');
+    if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
+      return savedLang;
+    }
+    const browserLang = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
+    return browserLang.startsWith('fr') ? 'fr' : 'en';
+  }
+
+  let currentLang = getInitialLanguage();
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('masarttek_lang', lang);
+    document.documentElement.lang = lang;
+
+    const t = translations[lang];
+    document.title = t.page_title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', t.meta_desc);
+
+    // Update active button states
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    // Update plain text elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key]) {
+        if (key === 'port_btn_more') {
+          const hiddenItems = document.querySelectorAll('.portfolio-hidden');
+          const isHidden = hiddenItems.length > 0 && hiddenItems[0].style.display === 'none';
+          el.textContent = isHidden ? t.port_btn_more : t.port_btn_less;
+        } else {
+          el.textContent = t[key];
+        }
+      }
+    });
+
+    // Update HTML elements
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (t[key]) el.innerHTML = t[key];
+    });
+
+    // Update placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (t[key]) el.setAttribute('placeholder', t[key]);
+    });
+  }
+
+  // Initialize language on load
+  document.addEventListener('DOMContentLoaded', () => {
+    setLanguage(currentLang);
+  });
+
+  /* ─── PORTFOLIO SHOW MORE ────────────────── */
+  document.getElementById('portfolioShowMore').addEventListener('click', function() {
+    const hiddenItems = document.querySelectorAll('.portfolio-hidden');
+    const isHidden = hiddenItems[0].style.display === 'none';
+    hiddenItems.forEach(item => { item.style.display = isHidden ? 'block' : 'none'; });
+    const t = translations[currentLang];
+    this.textContent = isHidden ? t.port_btn_less : t.port_btn_more;
+  });
+
+  /* ─── QUOTES CAROUSEL ────────────────────── */
+  let currentSlide = 0;
+  const totalSlides = 3;
+  
+  function updateCarousel() {
+    const slider = document.querySelector('.quotes-slider');
+    const dots = document.querySelectorAll('.carousel-dot');
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, index) => { dot.classList.toggle('active', index === currentSlide); });
+  }
+  
+  function moveCarousel(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+  
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
+  
+  setInterval(() => { moveCarousel(1); }, 8000);
+
+  /* ─── CURSOR & SCROLL ANIMATIONS ─────────── */
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
   let mx = -100, my = -100, rx = -100, ry = -100;
@@ -1978,8 +2289,8 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
     e.preventDefault();
     const form = e.target;
     const btn = document.getElementById('btnText');
-    const original = 'Envoyer le message';
-    btn.textContent = 'Envoi…';
+    const t = translations[currentLang];
+    btn.textContent = t.form_sending;
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -1988,15 +2299,15 @@ document.getElementById('portfolioShowMore').addEventListener('click', function(
       });
       const data = await res.json();
       if (data.success) {
-        btn.textContent = 'Message envoyé ✓';
+        btn.textContent = t.form_sent;
         form.reset();
       } else {
-        btn.textContent = 'Erreur, réessayez';
+        btn.textContent = t.form_error;
       }
     } catch (err) {
-      btn.textContent = 'Erreur, réessayez';
+      btn.textContent = t.form_error;
     }
-    setTimeout(() => { btn.textContent = original; }, 4000);
+    setTimeout(() => { btn.textContent = translations[currentLang].form_submit; }, 4000);
   }
 
   const menuToggle = document.getElementById('menuToggle');
@@ -2051,7 +2362,16 @@ function forceResponsiveSizes() {
   const circle = document.querySelector('.hero-reel');
   if (circle) { circle.style.setProperty('height', config.circleSize, 'important'); }
   
-  document.querySelectorAll('section:not(#quote)').forEach(section => section.style.setProperty('padding', config.sectionPadding, 'important'));
+  document.querySelectorAll('section:not(#quote):not(#portfolio):not(#portfolio-ia)').forEach(section => section.style.setProperty('padding', config.sectionPadding, 'important'));
+
+  // Maintien de l'espace réduit entre #portfolio et #portfolio-ia sur grands écrans
+  const padParts = config.sectionPadding.split(' ');
+  const padV = padParts[0];
+  const padH = padParts[1] || padParts[0];
+  const portSec = document.getElementById('portfolio');
+  const portIaSec = document.getElementById('portfolio-ia');
+  if (portSec) portSec.style.setProperty('padding', `${padV} ${padH} 28px ${padH}`, 'important');
+  if (portIaSec) portIaSec.style.setProperty('padding', `28px ${padH} ${padV} ${padH}`, 'important');
   
   document.querySelectorAll('.quote-text, .quote-item blockquote').forEach(el => el.style.setProperty('font-size', config.quoteFontSize, 'important'));
   document.querySelectorAll('.quote-item .quote-author').forEach(el => el.style.setProperty('font-size', config.quoteAuthorSize, 'important'));
